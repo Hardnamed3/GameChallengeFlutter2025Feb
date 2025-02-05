@@ -1,5 +1,8 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
+import 'package:flame_audio/flame_audio.dart';
+import 'package:flutter/material.dart';
 import 'package:game_challenge_2025feb/components/bullet.dart';
 import 'package:game_challenge_2025feb/game.dart';
 
@@ -24,6 +27,8 @@ class Enemy extends SpriteComponent
     add(RectangleHitbox());
   }
 
+  
+
   @override
   void update(double dt) {
     super.update(dt);
@@ -40,8 +45,32 @@ class Enemy extends SpriteComponent
     super.onCollisionStart(intersectionPoints, other);
 
     if (other is Bullet) {
-      removeFromParent();
+      effectHit();
       other.removeFromParent();
+
+      Future.delayed(const Duration(milliseconds: 150), () {
+      removeFromParent();
+      });
+
     }
+  }
+
+  void effectHit() {
+    // Play explosion sound
+    FlameAudio.play('explosion.ogg', volume: 0.6);
+
+    // Add effects
+    final colorEffect = ColorEffect(
+      const Color.fromARGB(255, 170, 25, 14),
+      EffectController(duration: 0.2, alternate: true, repeatCount: 2),
+    );
+
+    final scaleEffect = ScaleEffect.to(
+      Vector2(1.2, 1.2),
+      EffectController(duration: 0.1, alternate: true, repeatCount: 2),
+    );
+    addAll([colorEffect, scaleEffect]);
+
+    
   }
 }

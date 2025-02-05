@@ -1,5 +1,6 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:game_challenge_2025feb/game.dart';
 
 class Bullet extends SpriteComponent with HasGameReference<SpaceInvadersGame> {
@@ -13,14 +14,10 @@ class Bullet extends SpriteComponent with HasGameReference<SpaceInvadersGame> {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    sprite = await game.loadSprite(
-      'bullet.png',
-    );
-    add(
-      RectangleHitbox(
-        collisionType: CollisionType.passive,
-      ),
-    );
+    sprite = await game.loadSprite('bullet.png');
+    add(RectangleHitbox(collisionType: CollisionType.passive));
+
+    FlameAudio.play('laser.ogg', volume: 0.1);
   }
 
   @override

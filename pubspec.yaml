@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
 
   flame: ^1.23.0
+  flame_audio: ^2.10.8
 
 dev_dependencies:
   flutter_test:
@@ -25,3 +26,6 @@ flutter:
     - assets/images/stars1.png
     - assets/images/stars2.png
     - assets/images/bullet.png
+    - assets/audio/laser.ogg
+    - assets/audio/explosion.ogg
+    - assets/audio/background_music.ogg
