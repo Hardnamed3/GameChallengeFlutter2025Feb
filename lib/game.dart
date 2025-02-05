@@ -48,9 +48,9 @@ class SpaceInvadersGame extends FlameGame with PanDetector, HasCollisionDetectio
     );
   }
 
-  void startBgmMusic() {
+  void startBgmMusic(){
     FlameAudio.bgm.initialize();
-    //FlameAudio.bgm.play('background_music.ogg', volume:0.1);
+    //FlameAudio.loop('background_music.mp3', volume:0.1);
   }
 
   @override
