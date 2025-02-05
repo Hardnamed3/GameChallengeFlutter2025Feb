@@ -44,7 +44,7 @@ class Player extends SpriteAnimationComponent with HasGameRef<SpaceInvadersGame>
 
     game.add(_bulletSpawner);
 
-    FlameAudio.loop('background_music.mp3', volume:0.1);
+    //FlameAudio.play('background_music.mp3', volume:0.1);
   }
 
   void move(Vector2 delta) {

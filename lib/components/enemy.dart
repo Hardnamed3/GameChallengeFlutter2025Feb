@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
+import 'package:flame/particles.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:game_challenge_2025feb/components/bullet.dart';
@@ -69,8 +72,35 @@ class Enemy extends SpriteComponent
       Vector2(1.2, 1.2),
       EffectController(duration: 0.1, alternate: true, repeatCount: 2),
     );
+
     addAll([colorEffect, scaleEffect]);
 
-    
+    // Add explosion particle effect
+    game.add(
+      ParticleSystemComponent(
+        position: position, // Use the enemy’s position for explosion
+        particle: Particle.generate(
+          count: 20, // Number of particles
+          lifespan: 0.6, // Duration
+          generator: (i) {
+            final random = Random();
+            return AcceleratedParticle(
+              acceleration: Vector2(
+                random.nextDouble() * 100 - 50,
+                random.nextDouble() * 100 - 50,
+              ),
+              speed: Vector2(
+                random.nextDouble() * 200 - 100,
+                random.nextDouble() * 200 - 100,
+              ),
+              child: CircleParticle(
+                radius: 3,
+                paint: Paint()..color = Colors.orange,
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }
