@@ -1,0 +1,27 @@
+name: game_challenge_2025feb
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.6.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flame: ^1.23.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/player.png
+    - assets/images/enemy.png
+    - assets/images/stars1.png
+    - assets/images/stars2.png
+    - assets/images/bullet.png
